@@ -8,6 +8,7 @@ import java.util.List;
 @Service
 public interface TeamService {
     public List<Team> getAllTeams();
+    public Team getTeamById(Long id);
     public void save(Team team);
 
 }

@@ -25,7 +25,9 @@ public class TeamController {
     }
 
     @GetMapping("/getTeam")
-    public String getTeamById() {
+    public String getTeamById(Model model, Principal principal, @RequestParam("id") Long id) {
+        model.addAttribute("myUser", playerRepository.findByUsername(principal.getName()));
+        model.addAttribute("team", teamService.getTeamById(id));
         return "viewteam";
     }
 

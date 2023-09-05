@@ -19,6 +19,11 @@ public class TeamServiceImpl implements TeamService{
     }
 
     @Override
+    public Team getTeamById(Long id) {
+        return teamRepository.findById(id).orElseThrow();
+    }
+
+    @Override
     public void save(Team team) {
         teamRepository.save(team);
     }

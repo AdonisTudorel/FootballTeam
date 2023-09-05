@@ -10,5 +10,5 @@ public interface TeamService {
     public List<Team> getAllTeams();
     public Team getTeamById(Long id);
     public void save(Team team);
-
+    void delete(Long id);
 }

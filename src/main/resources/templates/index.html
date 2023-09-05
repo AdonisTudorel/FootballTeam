@@ -52,13 +52,13 @@
                                         </td>
 
                                         <td>
-                                            <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
+                                            <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
                                                th:href="@{/teams/edit/{id}(id=${team.id})}"><i class="fa fa-edit"></i></a>
                                         </td>
 
                                         <td>
-                                            <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
-                                               th:href="@{/teams/delete/{id}(id=${team.id})}"><i class="fa fa-trash"></i></a>
+                                            <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                               th:href="@{/teams/{id}(id=${team.id})}" class="delete-link"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
 <!--                                        <tr>-->
@@ -104,6 +104,19 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script th:src="@{/assets/js/script.min.js}"></script>
+    <script>
+    const deleteLinks = document.querySelectorAll('.delete-link');
+
+    deleteLinks.forEach(link => {
+    link.addEventListener('click', e => {
+    e.preventDefault();
+
+    fetch(link.href, {
+    method: 'DELETE'
+    });
+    })
+    });
+    </script>
 </body>
 
 </html>

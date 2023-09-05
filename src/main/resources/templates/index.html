@@ -113,6 +113,8 @@
 
     fetch(link.href, {
     method: 'DELETE'
+    }).then(() => {
+        location.reload();
     });
     })
     });

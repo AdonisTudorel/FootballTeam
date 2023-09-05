@@ -2,15 +2,19 @@ package ro.alexandru.footballteam.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 import ro.alexandru.footballteam.enums.PlayerRole;
 
 @Entity
 public class Player {
 
+    @Setter
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Setter
     @Getter
     @Column(nullable = false)
     private String username;
@@ -19,10 +23,13 @@ public class Player {
     @JoinColumn(name="team_id", nullable=true)
     private Team team;
 
+    @Setter
     @Getter
     @Column(nullable = false)
     private String password;
 
+    @Setter
+    @Getter
     @Column(nullable = false)
     private PlayerRole playerRole;
 

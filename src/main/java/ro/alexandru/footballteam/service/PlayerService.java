@@ -18,4 +18,6 @@ public interface PlayerService extends UserDetailsService {
     List<Player> getAll();
 
     UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+
+    void savePlayer(PlayerDto player);
 }

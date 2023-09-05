@@ -1,27 +1,21 @@
 package ro.alexandru.footballteam.dto;
 import lombok.Getter;
+import lombok.Setter;
 import ro.alexandru.footballteam.enums.PlayerRole;
 
 public class PlayerDto {
     @Getter
+    @Setter
     private String username;
+
+    @Getter
+    @Setter
     private String password;
+
+    @Getter
+    @Setter
+    private PlayerRole playerRole;
 
     public PlayerDto(){
     }
-
-    public void setUsername(String username){
-        this.username = username;
-    }
-
-    public CharSequence getPassword() {
-        return password;
-    }
-    public void setPassword(String encodedPassword) {
-        this.password = encodedPassword;
-    }
-
-    public void setRole(PlayerRole role) {
-    }
-
 }

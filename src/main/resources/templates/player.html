@@ -65,30 +65,35 @@
                                             <p class="text-primary m-0 fw-bold">User Settings</p>
                                         </div>
                                         <div class="card-body" style="margin-bottom: 0px;padding-bottom: 13px;">
-                                            <form th:object="${myUser}">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="username"><strong>Username</strong></label><!-- Start: username --><input class="form-control" type="text" id="username" placeholder="username" name="username"><!-- End: username -->
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="role"><strong>Roles</strong></label><!-- Start: roles --><select class="form-select">
-                                                                <option value="Admin" selected="">Admin</option>
-                                                                <option value="User">User</option>
-                                                            </select><!-- End: roles -->
-                                                        </div>
-                                                    </div>
+                                            <!-- Păstrează head, css, navbars, etc. existente -->
+
+                                            <form th:object="${myUser}" th:action="@{/players/update}" method="post">
+
+                                                <input type="hidden" th:field="*{id}"/>
+
+                                                <div class="form-group">
+                                                    <label>Username</label>
+                                                    <input th:field="*{username}" class="form-control" placeholder="Enter username"/>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Password</strong></label><!-- Start: password --><input class="form-control" type="password" id="first_name" placeholder="Password" name="first_name" required="" minlength="3" maxlength="20"><!-- End: password -->
-                                                        </div>
-                                                    </div>
+
+                                                <div class="form-group">
+                                                    <label>Password</label>
+                                                    <input type="password" th:field="*{password}" class="form-control" placeholder="Enter password"/>
                                                 </div>
-                                                <div class="mb-3">
-                                                    <!-- Start: save --><button class="btn btn-primary btn-sm" type="submit">Save Settings</button><!-- End: save -->
+
+                                                <div class="form-group">
+                                                    <label>Role</label>
+                                                    <select th:field="*{role}" class="form-control">
+                                                        <option th:value="'USER'" th:selected="${role} == 'USER'">User</option>
+                                                        <option th:value="'ADMIN'" th:selected="${role} == 'ADMIN'">Admin</option>
+                                                    </select>
                                                 </div>
+
+                                                <button type="submit" class="btn btn-primary">Update</button>
+
                                             </form>
+
+                                            <!-- Păstrează footer, js, etc. existente -->
                                         </div>
                                     </div>
                                     <div class="card shadow"></div>

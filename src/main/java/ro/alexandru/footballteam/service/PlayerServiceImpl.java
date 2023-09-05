@@ -56,6 +56,16 @@ public class PlayerServiceImpl implements PlayerService {
         );
     }
 
+    @Override
+    public void savePlayer(PlayerDto player) {
+        Player newPlayer = new Player(
+                player.getUsername(),
+                bCryptPasswordEncoder.encode(player.getPassword()),
+                player.getPlayerRole()
+        );
+        playerRepository.save(newPlayer);
+    }
+
     private Collection<? extends GrantedAuthority> mapRoleToAuthorities(PlayerRole playerRole) {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(playerRole.toString());
         return List.of(authority);

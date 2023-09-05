@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ro.alexandru.footballteam.dto.PlayerDto;
 import ro.alexandru.footballteam.repository.PlayerRepository;
 import ro.alexandru.footballteam.service.PlayerService;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.security.Principal;
 
@@ -44,6 +45,14 @@ public class PlayerController {
             return "player-add";
         }
         playerService.save(player);
+        return "redirect:/players";
+    }
+
+    @PostMapping("/players/update")
+    public String updatePlayer(@ModelAttribute("player") PlayerDto player, Model model, Principal principal) {
+        model.addAttribute("myUser", playerRepository.findByUsername(principal.getName()));
+        playerService.savePlayer(player);
+
         return "redirect:/players";
     }
 }

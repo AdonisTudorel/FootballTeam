@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+  <title>View Team - Football</title>
+
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+</head>
+
+<body id="page-top">
+
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="fragments/sidebar :: sidebar"></div>
+
+    <!-- Topbar -->
+    <div th:replace="fragments/topbar :: topbar"></div>
+
+    <!-- Page Content -->
+    <div id="content">
+
+      <div class="container-fluid">
+
+        <h3 class="text-dark mb-4">View Team</h3>
+
+        <div class="row">
+          <div class="col-12">
+
+            <div class="card shadow mb-4">
+
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                  <span th:text="${team.name}"></span> Details
+                </h6>
+              </div>
+
+              <div class="card-body">
+
+                <p>
+                  <strong>League:</strong>
+                  <span th:text="${team.league}"></span>
+                </p>
+
+                <p>
+                  <strong>Stadium:</strong>
+                  <span th:text="${team.stadium}"></span>
+                </p>
+
+                <!-- restul detaliilor echipei -->
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer th:replace="fragments/footer :: footer"></footer>
+
+  </div>
+
+  <!-- Scroll to Top Button -->
+  <a th:href="@{#page-top}" class="scroll-to-top rounded">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Scripts -->
+  <div th:replace="fragments/scripts :: scripts"></div>
+
+</body>
+</html>

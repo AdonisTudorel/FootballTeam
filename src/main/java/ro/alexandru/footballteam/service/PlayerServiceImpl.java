@@ -46,7 +46,7 @@ public class PlayerServiceImpl implements PlayerService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Player player = playerRepository.findByUsername(username);
         if (player == null) {
-            throw new UsernameNotFoundException("User not found");
+            throw new UsernameNotFoundException("User not found...");
         }
 
         return new org.springframework.security.core.userdetails.User(

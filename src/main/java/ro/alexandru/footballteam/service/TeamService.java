@@ -11,4 +11,5 @@ public interface TeamService {
     public Team getTeamById(Long id);
     public void save(Team team);
     void delete(Long id);
+    List<Team> search(String query);
 }

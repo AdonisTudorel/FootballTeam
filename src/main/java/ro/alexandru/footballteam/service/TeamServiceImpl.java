@@ -33,4 +33,9 @@ public class TeamServiceImpl implements TeamService{
         teamRepository.deleteById(id);
     }
 
+    @Override
+    public List<Team> search(String query) {
+        return teamRepository.findByNameContaining(query);
+    }
+
 }

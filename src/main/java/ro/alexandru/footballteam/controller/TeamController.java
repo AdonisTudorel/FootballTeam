@@ -13,6 +13,7 @@ import ro.alexandru.footballteam.repository.PlayerRepository;
 import ro.alexandru.footballteam.service.TeamService;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class TeamController {
@@ -74,6 +75,15 @@ public class TeamController {
     public String deleteTeam(@PathVariable Long id) {
         teamService.delete(id);
         return "redirect:/";
+    }
+
+    @GetMapping("/teams/search")
+    public String search(@RequestParam("query") String query, Model model, Principal principal) {
+        // Realizați căutarea în baza de date folosind query
+        List<Team> teams = teamService.search(query);
+        model.addAttribute("myUser", playerRepository.findByUsername(principal.getName()));
+        model.addAttribute("teams", teams);
+        return "index";
     }
 
 }

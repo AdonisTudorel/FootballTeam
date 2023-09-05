@@ -37,6 +37,11 @@ public class Team {
     @Column(nullable = false)
     private LocalDate founded;
 
+    @Setter
+    @Getter
+    @Column(nullable = false)
+    private String details;
+
     @OneToMany(mappedBy="team")
     private List<Player> roster;
 

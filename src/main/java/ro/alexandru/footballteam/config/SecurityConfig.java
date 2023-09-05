@@ -36,14 +36,17 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((request) -> request
+                        .requestMatchers("/resources/**").permitAll()
                         .requestMatchers("/assets/**").permitAll()
                         .requestMatchers("/register/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin((login) -> login
-                        .loginPage("/login")
                         .permitAll()
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/", true)
+                        .failureUrl("/")
                 )
                 .logout((logout) -> logout
                         .permitAll()

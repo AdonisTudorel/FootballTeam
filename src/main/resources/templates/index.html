@@ -26,11 +26,16 @@
                             <p class="text-primary m-0 fw-bold">Teams <a class="btn btn-primary d-inline-flex float-end" th:href="@{/addteam}" type="button">+</a></p>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6 col-xl-12">
-                                    <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                            <form method="GET" action="/teams/search">
+                                <div class="text-md-end dataTables_filter" id="dataTable_filter">
+                                    <div class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                        <div class="input-group">
+                                            <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..." name="query">
+                                            <button class="btn btn-primary py-0" type="submit"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
                                 <table class="table my-0" id="dataTable">
                                     <thead>
@@ -118,6 +123,18 @@
     });
     })
     });
+    </script>
+
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('query');
+
+            const searchInput = document.querySelector('#dataTable_filter input');
+            if (searchInput && query) {
+                searchInput.value = query;
+            }
+        };
     </script>
 </body>
 

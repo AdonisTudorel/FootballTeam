@@ -23,7 +23,7 @@
                     <h3 class="text-dark mb-4">Team</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Teams <a class="btn btn-primary d-inline-flex float-end" th:href="@{/addteam}" type="button">+</a></p>
+                            <p class="text-primary m-0 fw-bold">Teams <a class="btn btn-primary d-inline-flex float-end" th:href="@{/addteam}" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" type="button">+</a></p>
                         </div>
                         <div class="card-body">
                             <form method="GET" action="/teams/search">
@@ -66,18 +66,6 @@
                                                th:href="@{/teams/{id}(id=${team.id})}" class="delete-link"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
-<!--                                        <tr>-->
-<!--                                            <td>Movie#1</td>-->
-<!--                                            <td>Crime</td>-->
-<!--                                            <td>2008/11/28</td>-->
-<!--                                            <td><i class="fa fa-star fa-star-half-o"></i><i class="fa fa-star fa-star-o"></i><i class="fa fa-star"></i></td>-->
-<!--                                        </tr>-->
-<!--                                        <tr>-->
-<!--                                            <td>Airi Satou</td>-->
-<!--                                            <td>Crime</td>-->
-<!--                                            <td>2008/11/28</td>-->
-<!--                                            <td><i class="fa fa-star fa-star-half-o"></i><i class="fa fa-star fa-star-o"></i><i class="fa fa-star"></i></td>-->
-<!--                                        </tr>-->
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -87,19 +75,6 @@
                                     </tfoot>
                                 </table>
                             </div>
-<!--                            <div class="row">-->
-<!--                                <div class="col-md-6 col-xl-12">-->
-<!--                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">-->
-<!--&lt;!&ndash;                                        <ul class="pagination">&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <li class="page-item"><a class="page-link" href="#">2</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <li class="page-item"><a class="page-link" href="#">3</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </ul>&ndash;&gt;-->
-<!--                                    </nav>-->
-<!--                                </div>-->
-<!--                            </div>-->
                         </div>
                     </div>
                 </div>

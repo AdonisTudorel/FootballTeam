@@ -30,11 +30,6 @@ public class Team {
     @Setter
     @Getter
     @Column(nullable = false)
-    private String stadium;
-
-    @Setter
-    @Getter
-    @Column(nullable = false)
     private LocalDate founded;
 
     @Setter
@@ -42,8 +37,11 @@ public class Team {
     @Column(nullable = false)
     private String details;
 
-    @OneToMany(mappedBy="team")
-    private List<Player> roster;
+    @Setter
+    @Getter
+    @OneToOne
+    @JoinColumn(name = "stadium_id", referencedColumnName = "id")
+    private Stadium stadium;
 
     public Team(String name) {
         this.name = name;
@@ -53,10 +51,6 @@ public class Team {
         this.name = "";
         this.founded = LocalDate.now();
         this.league = "";
-        this.stadium = "";
     }
-
-
-    // getters and setters
 
 }

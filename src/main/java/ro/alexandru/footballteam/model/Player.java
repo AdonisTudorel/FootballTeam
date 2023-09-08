@@ -19,10 +19,6 @@ public class Player {
     @Column(nullable = false)
     private String username;
 
-    @ManyToOne
-    @JoinColumn(name="team_id", nullable=true)
-    private Team team;
-
     @Setter
     @Getter
     @Column(nullable = false)
@@ -40,7 +36,6 @@ public class Player {
     }
 
     public Player() {;
-        this.team = new Team();
         this.username = "";
         this.password = "";
         this.playerRole = PlayerRole.ROLE_USER;

@@ -1,15 +1,15 @@
 package ro.alexandru.footballteam.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PostAuthorize;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ro.alexandru.footballteam.model.Stadium;
 import ro.alexandru.footballteam.model.Team;
 import ro.alexandru.footballteam.repository.PlayerRepository;
+import ro.alexandru.footballteam.service.StadiumService;
 import ro.alexandru.footballteam.service.TeamService;
 
 import java.security.Principal;
@@ -22,6 +22,8 @@ public class TeamController {
     private TeamService teamService;
     @Autowired
     private PlayerRepository playerRepository;
+    @Autowired
+    private StadiumService stadiumService;
 
     @GetMapping("/")
     public String getAllTeams(Model model, Principal principal) {
@@ -44,15 +46,19 @@ public class TeamController {
         return team;
     }
 
+
     @GetMapping("/addteam")
     public String showAddTeam(Model model, Principal principal) {
         model.addAttribute("team", team(new Team()));
+        model.addAttribute("stadiums", stadiumService.getAll());
         model.addAttribute("myUser", playerRepository.findByUsername(principal.getName()));
         return "addteam";
     }
 
     @PostMapping("/teams")
-    public String addTeam(@ModelAttribute("team") Team team) {
+    public String addTeam(@ModelAttribute("team") Team team, @RequestParam("stadium") Long stadiumId) {
+        Stadium dbStadium = stadiumService.getById(stadiumId);
+        team.setStadium(dbStadium);
         teamService.save(team);
         return "redirect:/";
     }
@@ -61,6 +67,7 @@ public class TeamController {
     public String showEditTeam(Model model, Principal principal, @PathVariable Long id) {
         Team team = teamService.getTeamById(id);
         model.addAttribute("team", team);
+        model.addAttribute("stadiums", stadiumService.getAll());
         model.addAttribute("myUser", playerRepository.findByUsername(principal.getName()));
         return "addteam";
     }

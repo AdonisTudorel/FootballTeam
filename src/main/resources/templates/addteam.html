@@ -18,7 +18,7 @@
             <div id="content">
                 <nav th:replace="fragments/nav :: nav"></nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Movie</h3>
+                    <h3 class="text-dark mb-4">Team</h3>
                     <div class="row mb-3">
                         <div class="col-lg-8" style="width: 100%;">
                             <div class="row mb-3 d-none">
@@ -55,28 +55,34 @@
                                 <div class="col">
                                     <div class="card shadow mb-3">
                                         <div class="card-header py-3">
-                                            <p class="text-primary m-0 fw-bold">Add Movie</p>
+                                            <p class="text-primary m-0 fw-bold">Add Team</p>
                                         </div>
                                         <div class="card-body" style="margin-bottom: 0px;padding-bottom: 13px;">
-                                            <form th:action="@{/teams}" th:object="${team}" method="post">
+                                            <form th:action="@{/teams}" method="post">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="name"><strong>Team name</strong><input th:field="*{name}" class="form-control" type="text" id="name" placeholder="teamName" name="title"></label></div>
+                                                        <div class="mb-3"><label class="form-label" for="name"><strong>Team name</strong><input th:field="*{team.name}" class="form-control" type="text" id="name" placeholder="teamName" name="title"></label></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="league"><strong>League</strong><input th:field="*{league}" class="form-control" type="text" name="league" placeholder="League"></label></div>
+                                                        <div class="mb-3"><label class="form-label" for="league"><strong>League</strong><input th:field="*{team.league}" class="form-control" type="text" name="league" placeholder="League"></label></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="stadium"><strong>Stadium</strong><input th:field="*{stadium}" class="form-control" type="text" name="stadium" placeholder="Stadium"></label></div>
+                                                        <div class="mb-3"><label class="form-label" for="stadium"><strong>Stadium</strong><select class="form-control" name="stadium" id="stadium">
+                                                            <option th:each="stadium : *{stadiums}"
+                                                                    th:value="${stadium.id}"
+                                                                    th:text="${stadium.name}">
+                                                            </option>
+                                                        </select></label>
+                                                        </div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="details"><strong>Details</strong></label>
-                                                            <textarea th:field="*{details}" class="form-control" id="details" placeholder="Details" name="details"></textarea>
+                                                            <textarea th:field="*{team.details}" class="form-control" id="details" placeholder="Details" name="details"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <input type="hidden" th:field="*{id}">
+                                                <input type="hidden" th:field="*{team.id}">
                                                 <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" th:text="${team.id != null} ? 'Save' : 'Add'">Add</button></div>
                                             </form>
                                         </div>

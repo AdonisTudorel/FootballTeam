@@ -8,6 +8,7 @@
             <li class="nav-item"></li>
             <li class="nav-item"><a class="nav-link" th:href="@{/player}" onclick="window.location.href = '/player'"><i class="fas fa-cogs"></i><span>Profile</span></a></li>
             <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-table"></i><span>Table</span></a></li>
+            <li class="nav-item"><a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="nav-link" href="/addstadium"><i class="fas fa-table"></i><span>Add Stadium</span></a></li>
             <li class="nav-item"><a class="nav-link" th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i><span>LogOut</span></a></li>
             <li class="nav-item"></li>
         </ul>

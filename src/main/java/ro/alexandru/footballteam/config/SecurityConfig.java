@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,6 +15,7 @@ import ro.alexandru.footballteam.service.PlayerService;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfig {
 
     @Autowired
@@ -39,7 +41,8 @@ public class SecurityConfig {
                         .requestMatchers("/resources/**").permitAll()
                         .requestMatchers("/assets/**").permitAll()
                         .requestMatchers("/register/**").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/login/**").permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .formLogin((login) -> login
@@ -53,7 +56,9 @@ public class SecurityConfig {
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/")
                 )
-                .csrf().disable();
+                .csrf().disable()
+                .exceptionHandling()
+                .accessDeniedHandler(new CustomAccessDeniedHandler());
 
         return http.build();
     }

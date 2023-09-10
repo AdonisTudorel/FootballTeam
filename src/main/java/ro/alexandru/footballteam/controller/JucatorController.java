@@ -7,38 +7,42 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import ro.alexandru.footballteam.dto.StadiumDto;
-import ro.alexandru.footballteam.model.Stadium;
+import ro.alexandru.footballteam.model.Jucator;
 import ro.alexandru.footballteam.repository.PlayerRepository;
-import ro.alexandru.footballteam.service.StadiumService;
+import ro.alexandru.footballteam.service.JucatorService;
+import ro.alexandru.footballteam.service.TeamService;
 
 import java.security.Principal;
 
 @Controller
-public class StadiumController {
+public class JucatorController {
+    @Autowired
+    private JucatorService jucatorService;
 
     @Autowired
     private PlayerRepository playerRepository;
 
     @Autowired
-    private StadiumService stadiumService;
+    private TeamService teamService;
 
-    @ModelAttribute("team")
-    public Stadium stadium(@ModelAttribute(name="stadium") Stadium stadium) {
-        return stadium;
+    @ModelAttribute("jucator")
+    public Jucator jucator(@ModelAttribute(name="jucator") Jucator jucator) {
+        return jucator;
     }
-    @GetMapping("/addstadium")
+
+    @GetMapping("/addjucator")
     @Secured("ROLE_ADMIN")
-    public String showAddStadium(Model model, Principal principal) {
-        model.addAttribute("stadium", stadium(new Stadium()));
+    public String showAddJucator(Model model, Principal principal) {
         model.addAttribute("myUser", playerRepository.findByUsername(principal.getName()));
-        return "addstadium";
+        model.addAttribute("teams", teamService.getAllTeams());
+        model.addAttribute("jucator", jucator(new Jucator()));
+        return "addjucator";
     }
 
-    @PostMapping("/stadiums")
+    @PostMapping("/jucatori")
     @Secured("ROLE_ADMIN")
-    public String addStadium(@ModelAttribute("stadium") Stadium stadium) {
-        stadiumService.save(stadium);
+    public String addJucator(@ModelAttribute("jucator") Jucator jucator) {
+        jucatorService.save(jucator);
         return "redirect:/";
     }
 }

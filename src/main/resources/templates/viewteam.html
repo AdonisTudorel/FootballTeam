@@ -32,6 +32,9 @@
                     <p><strong>League:</strong> <span th:text="${team.league}"></span></p>
                     <p><strong>Stadium:</strong> <span th:text="${team.stadium.getName()}"></span></p>
                     <p><strong>Details:</strong> <span th:text="${team.details}"></span></p>
+                    <p><strong>No. Players:</strong> <span th:text="${nrJucatori}"></span></p>
+                    <p><strong>Players:</strong> <br/><span th:each="jucator : ${jucatori}" th:utext="${jucator.getName()} + ' ' + ${jucator.getLastname()} + '<br/>'"></span></p>
+
                   </div>
                 </div>
               </div>

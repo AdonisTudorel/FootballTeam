@@ -35,7 +35,7 @@ public class TeamServiceImpl implements TeamService{
 
     @Override
     public List<Team> search(String query) {
-        return teamRepository.findByNameContaining(query);
+        return teamRepository.findByNameContainingIgnoreCase(query);
     }
 
 }

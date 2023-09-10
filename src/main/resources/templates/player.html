@@ -84,10 +84,12 @@
                                                 <div class="form-group">
                                                     <label>Role</label>
                                                     <select th:field="*{role}" class="form-control">
-                                                        <option th:value="'USER'" th:selected="${role} == 'USER'">User</option>
-                                                        <option th:value="'ADMIN'" th:selected="${role} == 'ADMIN'">Admin</option>
+                                                        <option th:value="ROLE_USER" th:selected="${myUser.getRole()} == 'ROLE_USER'" th:text="User"></option>
+                                                        <option th:value="ROLE_ADMIN" th:selected="${myUser.getRole()} == 'ROLE_ADMIN'" th:text="Admin"></option>
                                                     </select>
                                                 </div>
+
+                                                <br/>
 
                                                 <button type="submit" class="btn btn-primary">Update</button>
 

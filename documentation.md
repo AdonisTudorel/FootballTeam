@@ -1,5 +1,3 @@
-Bine, iata documentatia completa si README-ul in format Markdown:
-
 # Documentatie
 
 ## Enunt problema
@@ -23,6 +21,9 @@ Aplicatia permite inregistrarea si gestionarea echipelor de fotbal. Utilizatorii
 ## Entitatea Player
 
 - are rol de utilizator sau admin
+
+## Entitatea Jucator
+
 - se poate aloca unei echipe
 
 ## Alte observatii
